@@ -1,0 +1,522 @@
+Build an interactive web experience called:
+
+THE UNFINISHED MAP OF BUTTERFLY ISLAND
+
+This is a hidden interactive page for a transmedia storyworld.
+
+CORE CONCEPT
+The page begins as an unfinished antique map of Butterfly Island.
+Visitors gradually construct their own interpretation of the island by adding locations, routes, notes and clues based on fragments they have discovered elsewhere.
+
+There must NEVER be an official completed geography.
+
+Different users may interpret the same location differently.
+
+--------------------------------------------------
+1. TECHNICAL SETUP
+--------------------------------------------------
+
+Build this as a static website suitable for GitHub Pages.
+
+Use:
+- HTML
+- CSS
+- JavaScript
+- SVG and/or HTML Canvas for drawing interaction
+
+Do not require a backend for the first prototype.
+
+Save the user's map locally using localStorage so their work remains after refreshing the page.
+
+Make the experience work primarily on desktop/laptop, but keep the layout responsive.
+
+Organize the code clearly into:
+index.html
+style.css
+script.js
+
+--------------------------------------------------
+2. VISUAL DIRECTION
+--------------------------------------------------
+
+The interface should look like an old explorer's map, not a modern digital map.
+
+Visual references:
+- antique pirate maps
+- old expedition maps
+- hand-drawn cartography
+- aged parchment
+- faded ink
+- imperfect handwritten annotations
+- hand-drawn mountains, forests, rivers and settlements
+- dotted expedition routes
+- compass rose
+- old archival documents
+
+Avoid:
+- Google Maps aesthetics
+- modern map pins
+- glossy UI
+- bright modern interface colors
+- fantasy game HUD aesthetics
+- polished vector-map appearance
+
+The map should feel physical, imperfect and discovered.
+
+Use a warm parchment background with subtle paper texture, stains, faded edges and very light grain.
+
+Interface controls should resemble small archival/cartography tools rather than modern app buttons.
+
+--------------------------------------------------
+3. THE BASE MAP
+--------------------------------------------------
+
+Place one large island in the center of the map.
+
+CRITICAL:
+The island must clearly have the silhouette of a BUTTERFLY.
+
+It should have:
+- two large upper wings
+- two smaller lower wings
+- a narrow central body-like land connection
+
+However, do not make it look like a literal cartoon butterfly.
+It should still look like a believable naturally formed island whose coastline happens to resemble a butterfly.
+
+The island should occupy approximately 60–70% of the main map canvas.
+
+Initially the island should contain almost no confirmed geography.
+
+The starting map may include only:
+- coastline
+- subtle terrain lines
+- faint mountains
+- faint rivers
+- sparse forest markings
+- ocean wave marks
+- a compass rose
+
+DO NOT initially label:
+- Eyeon
+- villages
+- forests
+- Iris Fenwick's outpost
+- the Daughter's route
+- political regions
+
+Those must be interpreted and added by the visitor.
+
+--------------------------------------------------
+4. PAGE INTRO
+--------------------------------------------------
+
+Before entering the map, show:
+
+THE UNFINISHED MAP
+
+"No complete map of Butterfly Island exists."
+
+"Build the island from what you have seen, heard, and believed."
+
+Button:
+
+ENTER THE MAP
+
+Use a subtle paper-opening or map-unfolding transition when entering.
+
+--------------------------------------------------
+5. MAIN INTERFACE
+--------------------------------------------------
+
+The map should occupy most of the screen.
+
+Create a compact vertical cartographer toolbar on the LEFT side.
+
+Tools:
+
+HAND
+PEN
+ROUTE
+LOCATION
+NOTE
+CLUE
+ERASER
+
+Also include:
+
+UNDO
+REDO
+ZOOM IN
+ZOOM OUT
+RESET VIEW
+
+At the top/right provide:
+
+MY MAP
+COMMUNITY MAP
+
+For the first prototype, COMMUNITY MAP can display example community interpretations or remain marked as experimental.
+
+--------------------------------------------------
+6. HAND / NAVIGATION TOOL
+--------------------------------------------------
+
+The Hand tool allows the visitor to move around the map.
+
+Features:
+- click and drag to pan
+- mouse wheel / trackpad zoom
+- smooth zoom centered near cursor
+- minimum and maximum zoom limits
+- cursor changes to open hand
+- while dragging, cursor becomes closed hand
+
+Drawing must be disabled while Hand mode is active.
+
+--------------------------------------------------
+7. PEN TOOL — VERY IMPORTANT
+--------------------------------------------------
+
+The Pen must feel like drawing with an old cartographer's ink pen.
+
+Do NOT implement it as a basic ugly browser drawing line.
+
+Create smooth freehand drawing.
+
+Requirements:
+
+- pointer/mouse/touch drawing
+- smooth curves rather than jagged straight segments
+- interpolate pointer movement
+- simplify excessive points after stroke completion
+- rounded stroke caps and joins
+- slight natural variation in stroke width
+- subtle opacity variation
+- dark brown/sepia ink rather than pure black
+
+Default pen:
+approximately 2px at normal map scale.
+
+Provide 3 pen thicknesses:
+
+FINE
+REGULAR
+BOLD
+
+Fine:
+for small annotations/details
+
+Regular:
+default map drawing
+
+Bold:
+for major boundaries or emphasized routes
+
+Add a small circular preview showing current pen thickness.
+
+The stroke must scale correctly with map zoom.
+
+When the map is zoomed, drawing coordinates must remain attached to the correct geographical point.
+
+The line must NOT shift position after zooming or panning.
+
+Optional:
+If pointer pressure information is available, use pressure to subtly affect stroke width.
+If pressure is unavailable, simulate very subtle width variation based on drawing speed.
+
+Keep the effect restrained.
+It should resemble an ink line, not a digital brush.
+
+--------------------------------------------------
+8. ROUTE TOOL
+--------------------------------------------------
+
+The Route tool is separate from the Pen.
+
+It creates expedition/travel paths.
+
+Visual style:
+hand-drawn dotted or dashed route line.
+
+Interaction:
+
+1. User clicks a starting point.
+2. User clicks additional points.
+3. A curved route connects them.
+4. Double-click or press ENTER to finish.
+
+The route should not create perfectly straight geometric lines.
+
+Use slightly curved paths between points.
+
+Provide route styles:
+
+DOTTED
+DASHED
+ROUGH INK
+
+Allow the visitor to click an existing route and edit/delete it.
+
+Routes may cross and contradict other routes.
+
+This is intentional.
+
+--------------------------------------------------
+9. LOCATION TOOL
+--------------------------------------------------
+
+When LOCATION is selected:
+
+1. Cursor becomes a small crosshair.
+2. Visitor clicks anywhere on Butterfly Island.
+3. Open a small parchment-style popup.
+
+Fields:
+
+LOCATION NAME
+TYPE
+INTERPRETATION
+SOURCE / CLUE
+CONFIDENCE
+
+TYPE options:
+City
+Village
+Forest
+Mountain
+River
+Ruins
+Outpost
+Unknown
+
+CONFIDENCE options:
+Theory
+Likely
+Certain
+
+Button:
+PLACE ON MAP
+
+After placement, create a small hand-drawn cartographic marker.
+
+Do NOT use modern Google-style map pins.
+
+Use small illustrated symbols such as:
+- settlement
+- tower
+- tree
+- mountain
+- tent/outpost
+- question mark for unknown
+
+Display the location name underneath in a handwritten/cartographic serif style.
+
+--------------------------------------------------
+10. NOTES
+--------------------------------------------------
+
+NOTE allows the visitor to place interpretation notes anywhere on the map.
+
+Click map → small text editor appears.
+
+Example:
+
+"I think the forest mentioned in Reel 06 begins here."
+
+Notes should look like handwritten marginal annotations directly on an old map.
+
+Allow:
+- edit
+- move
+- rotate slightly
+- delete
+
+Do not automatically verify whether the interpretation is correct.
+
+--------------------------------------------------
+11. CLUES / SOURCES
+--------------------------------------------------
+
+CLUE places a small paper fragment or archival marker.
+
+Clicking it opens:
+
+SOURCE
+DETAIL
+RELATED LOCATION
+
+Example sources:
+
+Instagram — Reel 06
+Instagram — Reel 09
+Audio Drama — EP03
+Campaign Material
+Election Website
+Unknown Source
+
+A clue represents evidence the visitor used to construct their map.
+
+Clues should visually resemble:
+- tiny paper scraps
+- pinned notes
+- faded archival markers
+
+NOT modern UI icons.
+
+--------------------------------------------------
+12. ERASER
+--------------------------------------------------
+
+The eraser should delete user-created content only.
+
+It must NOT erase the original Butterfly Island base map.
+
+Allow erasing:
+- pen strokes
+- routes
+- locations
+- notes
+- clues
+
+When hovering over an erasable object, subtly highlight it.
+
+Click to remove.
+
+Undo must restore erased objects.
+
+--------------------------------------------------
+13. UNDO / REDO
+--------------------------------------------------
+
+Implement a proper action history.
+
+Undo and Redo should work for:
+
+drawing
+erasing
+adding locations
+moving locations
+adding notes
+editing notes
+drawing routes
+deleting routes
+adding clues
+
+Keyboard shortcuts:
+
+CTRL/CMD + Z = Undo
+CTRL/CMD + SHIFT + Z = Redo
+
+--------------------------------------------------
+14. MY MAP
+--------------------------------------------------
+
+MY MAP contains only the current visitor's interpretation.
+
+Everything they create should persist in localStorage.
+
+Include:
+
+SAVE MAP
+EXPORT MAP
+CLEAR MY MAP
+
+EXPORT MAP should allow the visitor to export their interpretation as a PNG image.
+
+Before CLEAR MY MAP, require confirmation.
+
+--------------------------------------------------
+15. COMMUNITY MAP
+--------------------------------------------------
+
+The conceptual purpose of COMMUNITY MAP is to show that different people imagine Butterfly Island differently.
+
+Do NOT merge interpretations into one authoritative geography.
+
+Instead, community contributions should visually overlap.
+
+For the prototype, create several example interpretations.
+
+Example:
+
+User A places "Forest" northwest of Eyeon.
+User B places "Forest" northeast.
+User C draws a completely different route.
+
+All three may coexist.
+
+Use slightly faded layers when multiple interpretations overlap.
+
+Clicking a contribution should reveal:
+
+"Community Interpretation"
+
+rather than:
+
+"Confirmed Location"
+
+--------------------------------------------------
+16. IMPORTANT NARRATIVE RULE
+--------------------------------------------------
+
+NEVER tell the visitor:
+
+"Correct"
+"Incorrect"
+"Official location"
+"True route"
+
+The map is about interpretation.
+
+Contradictions are allowed.
+
+The experience should make the visitor feel that Butterfly Island exists differently depending on how its stories are interpreted.
+
+--------------------------------------------------
+17. SMALL DETAILS
+--------------------------------------------------
+
+Add subtle atmospheric details:
+
+- map title printed into parchment
+- compass rose
+- faint ocean lines
+- tiny decorative sea illustrations
+- coordinate-like border marks that do NOT correspond to real coordinates
+- slightly torn paper edges
+- faint ink stains
+
+When zooming deeply into the island, paper texture and drawn terrain should remain visually coherent.
+
+Keep animations subtle.
+
+No excessive fantasy effects.
+
+--------------------------------------------------
+18. FINAL EXPERIENCE
+--------------------------------------------------
+
+The visitor should experience this sequence:
+
+ENTER SECRET PAGE
+↓
+SEE THE UNFINISHED BUTTERFLY-SHAPED ISLAND
+↓
+EXPLORE
+↓
+PLACE LOCATIONS FROM STORY CLUES
+↓
+DRAW THE DAUGHTER'S POSSIBLE JOURNEY
+↓
+ADD NOTES AND SOURCES
+↓
+COMPARE THEIR INTERPRETATION WITH OTHERS
+↓
+REALIZE THAT THERE IS NO SINGLE CONFIRMED MAP
+
+The finished visual result should gradually resemble an old, heavily annotated explorer's map filled with hand-drawn locations, dotted routes, notes and conflicting interpretations.
+
+Do not create a completed map for the visitor.
+
+Give them the tools to construct one.
